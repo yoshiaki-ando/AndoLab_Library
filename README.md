@@ -1,8 +1,8 @@
 # 安藤研究室用ライブラリ
 ## 目次
 * [目次](#概要)
-* [Vector3d.h 3次元ベクトル](#Vector3d.h:-3次元ベクトル)
-* [vector_gauss_quadrature 位置ベクトルを引数とするガウス・ルジャンドル積分](#vector_gauss_quadrature:-位置ベクトルを引数とするガウス・ルジャンドル積分)
+* [Vector3d.h 3次元ベクトル](#vector3dh-3次元ベクトル)
+* [vector_gauss_quadrature 位置ベクトルを引数とするガウス・ルジャンドル積分](#vector_gauss_quadrature-位置ベクトルを引数とするガウス・ルジャンドル積分)
 
 ## 概要
 * 全て namespace は <b>AndoLab</b>
