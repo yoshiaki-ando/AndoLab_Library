@@ -3,6 +3,7 @@
 * [目次](#概要)
 * [Vector3d.h 3次元ベクトルのクラス](#vector3dh-3次元ベクトル)
 * [関数vector_gauss_quadrature 位置ベクトルを引数とするガウス・ルジャンドル積分](#関数vector_gauss_quadrature)
+* [関数allocate_memory*n*d *n*次元配列の確保](#関数allocate_memorynd)
 
 ## 概要
 * 全て namespace は <b>AndoLab</b>
