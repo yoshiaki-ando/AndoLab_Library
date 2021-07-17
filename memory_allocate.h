@@ -24,6 +24,9 @@
  *tex \end{description}
  *tex 
  */
+
+namespace AndoLab{
+
 template <class Var>
 Var ***allocate_memory3d
 (int nx, int ny, int nz, Var v0){
@@ -117,6 +120,6 @@ void deallocate_memory4d(Var ****v){
   delete [] v;
 }
 
-
+}
 
 #endif /* MEMORY_ALLOCATE_H_ */

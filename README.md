@@ -1,7 +1,7 @@
 # 安藤研究室用ライブラリ
 ## 目次
 * [目次](#概要)
-* [Vector3d.h 3次元ベクトル](#vector3dh-3次元ベクトル)
+* [Vector3d.h 3次元ベクトルのクラス](#vector3dh-3次元ベクトル)
 * [関数vector_gauss_quadrature 位置ベクトルを引数とするガウス・ルジャンドル積分](#関数vector_gauss_quadrature)
 
 ## 概要
@@ -102,3 +102,18 @@ int main(void){
   double v = vector_gauss_quadrature(r1, r2, func, (void*)&p0);
 }
 ```
+
+## 関数allocate_memory*n*d
+
+*n*次元配列を確保し、ポインタを返す。
+*n*は2〜4のみ。初期値の型によって確保される型が異なる。
+
+### 使用法
+```C++:
+double **ptr = allocate_memory2d(m, n, 0.0); /* m×nを確保し、0.0を代入する */
+deallocate_memory(ptr); /* 開放 */
+```
+
+### 注意点
+* 初期値の変数の型によって確保される型が異なる。紛らわしい場合は明示的にキャストする。
+* 連続した領域を確保しているため、例えば、上のptrにおいて、`ptr[i][j]` と `ptr[0][i*n+j]`は同じ
