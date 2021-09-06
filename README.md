@@ -72,11 +72,11 @@ void set(T x1, T x2, T x3, AndoLab::coordinate cs); /* 座標系csで指定さ�
 
 ### 使用法
 1. 被積分関数として
-`double function(AndoLab::Vector3d <double>, void*)`
+`double function(Vector3d <double>, void*)`
 で定義される関数を準備する。void*の引数は、別の型、構造体、クラスのポインタにキャストし直すことで、積分変数以外の任意のパラメタを加えることが出来る。
 2. 積分範囲を定義して呼び出す。
 ```C++:
-double result = AndoLab::vector_gauss_quadrature(r1, r2, function, (void*)pointer_of_parameters)
+double result = vector_gauss_quadrature(r1, r2, function, (void*)pointer_of_parameters)
 ```
 
 ### 使用例
@@ -98,8 +98,8 @@ int main(void){
   p0.a = 3.0;
   p0.b = 2.0;
 
-  AndoLab::Vector3d <double> r1(0.0, 0.0, 0.0);
-  AndoLab::Vector3d <double> r2(1.0, 2.0, 3.0);
+  Vector3d <double> r1(0.0, 0.0, 0.0);
+  Vector3d <double> r2(1.0, 2.0, 3.0);
   double v = vector_gauss_quadrature(r1, r2, func, (void*)&p0);
 }
 ```
