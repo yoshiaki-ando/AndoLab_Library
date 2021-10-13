@@ -2,6 +2,7 @@
 ## 目次
 * [概要](#概要)
 * [Vector3d.h 3次元ベクトルのクラス](#vector3dh-3次元ベクトル)
+* [関数gauss_quadrature ガウス・ルジャンドル積分](#関数gauss_quadrature)
 * [関数vector_gauss_quadrature 位置ベクトルを引数とするガウス・ルジャンドル積分](#関数vector_gauss_quadrature)
 * [関数allocate_memory*n*d *n*次元配列の確保](#関数allocate_memorynd)
 
@@ -60,6 +61,48 @@ void set(T x1, T x2, T x3, AndoLab::coordinate cs); /* 座標系csで指定さ�
 ### 非メンバ関数
 * `T abs(Vector3d <T> a)` : ベクトルaの大きさ
 * `T angle_between(Vector3d <T> a, Vector3d <T> b)` : ベクトルa, bのなす角 [rad]
+
+## 関数gauss_quadrature
+
+### 概要
+よくあるGauss Legendre積分
+
+### インクルード
+```C++:gauss_quadrature.h
+#include <gauss_quadrature.h>
+```
+
+### 使用法
+
+被積分関数は、積分変数が double型、それ以外のパラメタは
+クラスなどにして、そのアドレスを void*型にキャストして渡す
+
+`double AndoLab::gauss_quadrature( double(*)(double, void*), void* parameters, double a, double b)`
+
+* `a, b`: 積分区間 [a, b]
+
+### 例
+
+```C++:sample.cpp
+class parameters{
+private:
+public:
+  double a, b;
+};
+
+double function(double x, void *p){
+  parameters p1 = *( (parameters*)p );
+  return (p1.a * x + p1.b);
+}
+
+int main(void){
+
+  parameters p;
+  p.a = 5.0;
+  p.b = 3.0;
+
+  double ans = AndoLab::gauss_quadrature(function, (void*)(&p), 0.0, 1.0);
+```
 
 ## 関数vector_gauss_quadrature
 
