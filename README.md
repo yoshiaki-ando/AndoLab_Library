@@ -109,6 +109,11 @@ int main(void){
 *n*次元配列を確保し、ポインタを返す。
 *n*は2〜4のみ。初期値の型によって確保される型が異なる。
 
+### インクルード
+```C++:memory_allocate.h
+#include <memory_allocate.h>
+```
+
 ### 使用法
 ```C++:
 double **ptr = allocate_memory2d(m, n, 0.0); /* m×nを確保し、0.0を代入する */
@@ -118,3 +123,17 @@ deallocate_memory(ptr); /* 開放 */
 ### 注意点
 * 初期値の変数の型によって確保される型が異なる。紛らわしい場合は明示的にキャストする。
 * 連続した領域を確保しているため、例えば、上のptrにおいて、`ptr[i][j]` と `ptr[0][i*n+j]`は同じ
+
+## physical_constants.h 物理定数
+
+### インクルード
+```C++:physical_constants.h
+#include <physical_constants.h>
+```
+
+### 定義されている定数
+* `double C0` = 299792458 m/s (真空中の光速)
+* `double MU0` = 4π×10^{-7} H/m (真空の透磁率)
+* `double EPS0` = 1/C0^2/MU0 ≒ 8.854 × 10^{-12} F/m (真空の誘電率)
+* `double MOLAR_GAS_CONSTANT` = 8.3144598 J/K/mol (モル気体定数R)
+* `double BOLTZMANN_CONSTANT` = 1.38064852 × 10^{-23} m^2 kg/s^2/K (ボルツマン定数 k_B)

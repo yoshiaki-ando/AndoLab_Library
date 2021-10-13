@@ -1,4 +1,5 @@
-OBJS_VECTOR_GAUSS_QUADRATURE = vector_gauss_quadrature.o
+OBJS_VECTOR_GAUSS_QUADRATURE = vector_gauss_quadrature.o gauss_quadrature.o
+HEADERS = Command.h Vector3d.h gauss_quadrature.h memory_allocate.h physical_constants.h vector_gauss_quadrature.h
 OBJS = $(OBJS_VECTOR_GAUSS_QUADRATURE) Command.o
 OPTS = -O3 -Wall -fPIC
 INC = -I.
@@ -14,6 +15,8 @@ libAndoLab.so: $(OBJS)
 %.o: %.cpp
 	g++ -c $< $(OPTS) $(INC)
 
+gauss_quadrature.o: gauss_quadrature.h
+vector_gauss_quadrature.o: vector_gauss_quadrature.h
 
 clean:
 	rm -rf *.o libAndoLab.so
@@ -29,5 +32,5 @@ install: all
 	@if [ ! -d $(INSTALL_INC_DIR) ]; then \
 		mkdir $(INSTALL_INC_DIR); \
 	fi
-	cp *.h $(INSTALL_INC_DIR)
+	cp $(HEADERS) $(INSTALL_INC_DIR)
 
