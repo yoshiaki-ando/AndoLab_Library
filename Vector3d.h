@@ -1,6 +1,8 @@
 /*
  * Vector3d.h
  *
+ * 3次元ベクトルを扱うテンプレートライブラリ
+ *
  *  Created on: 2019/07/10
  *      Author: ando
  */
@@ -15,6 +17,8 @@
 
 namespace AndoLab {
 enum class coordinate { Cartesian, Spherical };
+
+constexpr double DEG2RAD { M_PI / 180.0 };
 
 template <class T>
 class Vector3d{
@@ -71,10 +75,20 @@ public:
       std::string separtor = "",
       std::string kakko = "  "
       );
+  Vector3d <T> rotate(const T Rotation_Angle, Vector3d <T> Axis_vector);
+
+  /* その点を基準とした 𝒓^ , 𝜽^ , 𝝓^ */
+  Vector3d <T> r_vector(void);
+  Vector3d <T> theta_vector(void);
+  Vector3d <T> phi_vector(void);
 
   /* 非メンバ関数 */
   template <class T2>
   friend T2 abs(Vector3d <T2>);
+  template <class T2>
+  friend Vector3d <T2> geographic_coordinate( /* 緯度経度を単位ベクトルに変換 */
+      T2 Latitude_in_deg, T2 Longitude_in_deg);
+
 };
 
 template <class T>
@@ -152,6 +166,21 @@ Vector3d <T> Vector3d <T>::operator /(T divider){
 }
 
 template <class T>
+Vector3d <T> Vector3d <T>::r_vector(void){
+  return n();
+}
+
+template <class T>
+Vector3d <T> Vector3d <T>::theta_vector(void){
+  return Vector3d <T> { 1.0, pTheta + M_PI/2.0, pPhi, coordinate::Spherical };
+}
+
+template <class T>
+Vector3d <T> Vector3d <T>::phi_vector(void){
+  return Vector3d <T> { 1.0, M_PI/2.0, pPhi + M_PI/2.0, coordinate::Spherical };
+}
+
+template <class T>
 T Vector3d <T>::abs(void){
   return std::sqrt(pX*pX + pY*pY + pZ*pZ);
 }
@@ -199,6 +228,26 @@ T angle_between(Vector3d <T> v1, Vector3d <T> v2){
 
   return acos( cos_th>1.0?1.0:cos_th );
 }
+
+/* 緯度経度を単位ベクトルに変換 */
+template <class T>
+Vector3d <T> geographic_coordinate(T lat, T lon){
+  T th = M_PI/2.0 - lat*DEG2RAD;
+  T ph = lon * DEG2RAD;
+  return Vector3d <T> { 1.0, th, ph, coordinate::Spherical };
+}
+
+template <class T>
+Vector3d <T> Vector3d <T>::rotate(const T th, Vector3d <T> axis_v){
+  const T cth { std::cos(th) };
+  const T sth { std::sin(th) };
+  const T m_cth { 1.0 - cth };
+  Vector3d <T> naxis_v = axis_v.n();
+
+  return m_cth * (naxis_v%(*this)) * naxis_v
+      + cth*(*this) + sth * (naxis_v * (*this));
+}
+
 
 template <class T>
 std::string Vector3d <T>::string(
