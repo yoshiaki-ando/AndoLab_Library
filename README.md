@@ -58,6 +58,9 @@ void set(T x1, T x2, T x3, AndoLab::coordinate cs); /* 座標系csで指定さ�
 * `Vector3d <T> n(void)` : 正規化、単位ベクトル化
 * `Vector3d <T> rotate(T θ, Vector3d <T> n)` : ベクトルn を軸に角度θ回転する
 * `std::string string(std::string separator, std::string kakko)` : 表示用のstring型作成。separator(kakkoが省略なら省略可)は,(カンマ)などを指定する(省略時は空白一文字)。kakko(省略可)は ```()``` といった、3成分を囲むカッコの組を与える(省略時は囲みなし)。
+* `Vector3d <T> r_vector(void)` : そのオブジェクトの座標における r方向単位ベクトル 𝒓^
+* `Vector3d <T> theta_vector(void)` : そのオブジェクトの座標における θ方向単位ベクトル 𝜽^
+* `Vector3d <T> phi_vector(void)` : そのオブジェクトの座標における φ方向単位ベクトル 𝝓^
 
 ### 非メンバ関数
 * `T abs(Vector3d <T> a)` : ベクトルaの大きさ
