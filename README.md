@@ -31,12 +31,12 @@ Vector3d <T> v(T x1, T x2, T x3, AndoLab::coordinate cs); /* 座標系csで指�
 
 ### アクセサ
 ```C++:
-T x(void); /* デカルト座標系のx成分 */
-T y(void); /* デカルト座標系のy成分 */
-T z(void); /* デカルト座標系のz成分 */
-T r(void); /* 球座標系のr成分(θ、φ方向) */
-T theta(void); /* 球座標系のθ方向 */
-T phi(void); /* 球座標系のφ方向 */
+T x(void); /* デカルト座標系のx座標 */
+T y(void); /* デカルト座標系のy座標 */
+T z(void); /* デカルト座標系のz座標 */
+T r(void); /* 球座標系のr座標(θ、φ方向) */
+T theta(void); /* 球座標系のθ座標 */
+T phi(void); /* 球座標系のφ座標 */
 
 void set(T x, T y, T z); /* デカルト座標系でのベクトル(x,y,z)  */
 void set(T x1, T x2, T x3, AndoLab::coordinate cs); /* 座標系csで指定されたベクトル(x1,x2,x3) */
@@ -61,6 +61,8 @@ void set(T x1, T x2, T x3, AndoLab::coordinate cs); /* 座標系csで指定さ�
 * `Vector3d <T> r_vector(void)` : そのオブジェクトの座標における r方向単位ベクトル 𝒓^
 * `Vector3d <T> theta_vector(void)` : そのオブジェクトの座標における θ方向単位ベクトル 𝜽^
 * `Vector3d <T> phi_vector(void)` : そのオブジェクトの座標における φ方向単位ベクトル 𝝓^
+* `T latitude(void)` : そのベクトルの方向の緯度 [deg]、南緯は負
+* `T longitude(void)` : そのベクトルの方向の経度 [deg]、西経は負
 
 ### 非メンバ関数
 * `T abs(Vector3d <T> a)` : ベクトルaの大きさ

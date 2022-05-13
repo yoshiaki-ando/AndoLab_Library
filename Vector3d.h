@@ -19,6 +19,7 @@ namespace AndoLab {
 enum class coordinate { Cartesian, Spherical };
 
 constexpr double DEG2RAD { M_PI / 180.0 };
+constexpr double RAD2DEG { 180.0 / M_PI };
 
 template <class T>
 class Vector3d{
@@ -81,6 +82,10 @@ public:
   Vector3d <T> r_vector(void);
   Vector3d <T> theta_vector(void);
   Vector3d <T> phi_vector(void);
+
+  /* 緯度・経度 */
+  T latitude(void);
+  T longitude(void);
 
   /* 非メンバ関数 */
   template <class T2>
@@ -235,6 +240,18 @@ Vector3d <T> geographic_coordinate(T lat, T lon){
   T th = M_PI/2.0 - lat*DEG2RAD;
   T ph = lon * DEG2RAD;
   return Vector3d <T> { 1.0, th, ph, coordinate::Spherical };
+}
+
+/* ベクトルの緯度を計算 */
+template <class T>
+T Vector3d <T>::latitude(void){
+  return (0.5*M_PI - pTheta) * RAD2DEG;
+}
+
+/* ベクトルの経度を計算 */
+template <class T>
+T Vector3d <T>::longitude(void){
+  return pPhi * RAD2DEG;
 }
 
 template <class T>

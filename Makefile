@@ -5,11 +5,15 @@ OPTS = -O3 -Wall -fPIC
 INC = -I.
 INSTALL_TOP_DIR = $(HOME)
 
-all: libAndoLab.so
+SUFFIX = _20
+
+TARGET = libAndoLab$(SUFFIX).so
+
+all: $(TARGET)
 
 .PHONY: all clean install
 
-libAndoLab.so: $(OBJS)
+$(TARGET): $(OBJS)
 	g++ -shared -o $@ $(OBJS)
 
 %.o: %.cpp
@@ -19,7 +23,7 @@ gauss_quadrature.o: gauss_quadrature.h
 vector_gauss_quadrature.o: vector_gauss_quadrature.h
 
 clean:
-	rm -rf *.o libAndoLab.so
+	rm -rf *.o $(TARGET)
 
 ## Install
 INSTALL_LIB_DIR = $(INSTALL_TOP_DIR)/lib
@@ -28,7 +32,7 @@ install: all
 	@if [ ! -d $(INSTALL_LIB_DIR) ]; then \
 		mkdir $(INSTALL_LIB_DIR); \
 	fi
-	cp libAndoLab.so $(INSTALL_LIB_DIR)
+	cp $(TARGET) $(INSTALL_LIB_DIR)
 	@if [ ! -d $(INSTALL_INC_DIR) ]; then \
 		mkdir $(INSTALL_INC_DIR); \
 	fi

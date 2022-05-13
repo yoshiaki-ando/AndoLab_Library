@@ -6,10 +6,10 @@ Release/
 *.gpt
 *.tgz
 *.o
+*.so
 main
 .cproject
 .project
 .settings/
 log.txt
 libAndoLab.so
-
