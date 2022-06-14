@@ -1,5 +1,5 @@
 OBJS_VECTOR_GAUSS_QUADRATURE = vector_gauss_quadrature.o gauss_quadrature.o
-HEADERS = Command.h Vector3d.h gauss_quadrature.h memory_allocate.h physical_constants.h vector_gauss_quadrature.h
+HEADERS = Command.h Vector3d.h gauss_quadrature.h memory_allocate.h physical_constants.h vector_gauss_quadrature.h Matrix3d.h
 OBJS = $(OBJS_VECTOR_GAUSS_QUADRATURE) Command.o
 OPTS = -O3 -Wall -fPIC
 INC = -I.

@@ -21,6 +21,10 @@ enum class coordinate { Cartesian, Spherical };
 constexpr double DEG2RAD { M_PI / 180.0 };
 constexpr double RAD2DEG { 180.0 / M_PI };
 
+/* 前方参照クラス */
+template <class T>
+class Matrix3d;
+
 template <class T>
 class Vector3d{
 private:
@@ -94,6 +98,12 @@ public:
   friend Vector3d <T2> geographic_coordinate( /* 緯度経度を単位ベクトルに変換 */
       T2 Latitude_in_deg, T2 Longitude_in_deg);
 
+  /* friend宣言 */
+  template <class T2>
+  friend Vector3d <T2> operator * ( Matrix3d <T2>, Vector3d <T2> );
+
+  template <class T2>
+  friend Matrix3d <T2> rotation_matrix(T2 th, Vector3d <T2> n);
 };
 
 template <class T>
