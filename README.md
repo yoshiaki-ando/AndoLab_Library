@@ -2,7 +2,7 @@
 ## 目次
 * [概要](#概要)
 * [Vector3d.h 3次元ベクトルのクラス](#vector3dh-3次元ベクトル)
-* [Matrix3d.h 3×3行列のクラス](#matrix3dh-3×3行列)
+* [Matrix3d.h 3×3行列のクラス](#matrix3dh-33行列)
 * [関数gauss_quadrature ガウス・ルジャンドル積分](#関数gauss_quadrature)
 * [関数vector_gauss_quadrature 位置ベクトルを引数とするガウス・ルジャンドル積分](#関数vector_gauss_quadrature)
 * [関数allocate_memory*n*d *n*次元配列の確保](#関数allocate_memorynd)
