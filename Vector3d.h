@@ -94,9 +94,13 @@ public:
   /* 非メンバ関数 */
   template <class T2>
   friend T2 abs(Vector3d <T2>);
+
   template <class T2>
   friend Vector3d <T2> geographic_coordinate( /* 緯度経度を単位ベクトルに変換 */
       T2 Latitude_in_deg, T2 Longitude_in_deg);
+
+  template <class T2>
+  friend double distance(Vector3d <T2>, Vector3d <T2>); /* 2つの位置ベクトル間の距離 */
 
   /* friend宣言 */
   template <class T2>
@@ -250,6 +254,14 @@ Vector3d <T> geographic_coordinate(T lat, T lon){
   T th = M_PI/2.0 - lat*DEG2RAD;
   T ph = lon * DEG2RAD;
   return Vector3d <T> { 1.0, th, ph, coordinate::Spherical };
+}
+
+template <class T>
+double distance(Vector3d <T> v1, Vector3d <T> v2){
+  double x = v1.pX - v2.pX;
+  double y = v1.pY - v2.pY;
+  double z = v1.pZ - v2.pZ;
+  return std::sqrt( x*x + y*y + z*z );
 }
 
 /* ベクトルの緯度を計算 */
